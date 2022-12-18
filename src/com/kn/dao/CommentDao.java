@@ -15,7 +15,7 @@ public class CommentDao {
 	public List<Comment> findAll() throws ClassNotFoundException{
 		Connection conn = DBUtil.getConnection();
 		List<Comment> comments = new ArrayList<>();
-		String sql = "select comment.uid, uname, avatar, time, content from user,comment where user.uid=comment.uid order by time asc";
+		String sql = "select comment.uid, uname, avatar, time, content from user,comment where user.uid=comment.uid order by time desc";
 		
 		try{
 			PreparedStatement prep = conn.prepareStatement(sql);
