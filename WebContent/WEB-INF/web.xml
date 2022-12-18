@@ -9,12 +9,12 @@
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
   
-  <servlet>
-    <servlet-name>comment</servlet-name>
+    <servlet>
+    <servlet-name>bbs</servlet-name>
     <servlet-class>com.kn.servlet.CommentServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>comment</servlet-name>
+    <servlet-name>bbs</servlet-name>
     <url-pattern>*.chat</url-pattern>
   </servlet-mapping>
 </web-app>

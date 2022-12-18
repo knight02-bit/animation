@@ -45,7 +45,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="bbs.html">留言区</a>
+                    <a href="list.chat">留言区</a>
                 </li>
                 <li>
                     <a href="">
@@ -168,14 +168,7 @@
                     <%
 						}
 					%>
-                    <!--
-                    <li><a href="#">1</a></li>
-                    <li><span>2</span></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">...</a></li>
-                    <li><a href="#">19</a></li>
-                    -->
+
                     <%
 						for(int i = 1; i <= pageNum; i++){
 							
@@ -204,7 +197,7 @@
                 	%>
                     			<li><a href="list.do?current=<%=current_page+1 %>">👉</a></li>
                     <%
-                			}else{
+                			}else if(p.getPageNum() > 1){
                 				
                 	%>
                 				<li><a href="list.do?current=<%=current_page+1 %>&&aname=<%=p.getAname() %>">👉</a></li>

@@ -4,8 +4,16 @@ import java.sql.Time;
 
 public class Comment {
 	private int uid;
+	private String avatar;
 	private Time time;
 	private String content;
+	
+	public String getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
 	public int getUid() {
 		return uid;
 	}
@@ -27,7 +35,7 @@ public class Comment {
 	
 	@Override
 	public String toString() {
-		return "Comment [uid=" + uid + ", time=" + time + ", content=" + content + "]";
+		return "Comment [uid=" + uid + ", avatar=" + avatar + ", time=" + time + "\n    , content=" + content + "]";
 	}
 	
 	

@@ -5,7 +5,7 @@ import java.util.List;
 import com.kn.dao.AnimDao;
 import com.kn.entity.Anim;
 
-public class DaoTest {
+public class AnimDaoTest {
 	
 	public static void main(String[] args) throws ClassNotFoundException{
 		

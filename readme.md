@@ -90,6 +90,8 @@
 
 
 
+
+
 ## 设计缺陷
 
 1. 删除番剧后用户的追番清单也应更新,但操作难度有待考量
@@ -110,12 +112,24 @@
 
 
 
-### 图像上传
+### ~~图像上传~~(实现性有待考量)
 
 尝试使用图库的api接口, 不保存本地
 
 ```
 https://img.ski/page/api-docs.html
+https://imgse.com/page/plugin
+https://www.kjava.com/
+```
+
+
+
+
+
+dm 
+
+```
+47|NM5NuvfkODOqEmiVtfWsUW2MZAUWUdsZYAuzgOiA
 ```
 
 
