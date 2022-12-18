@@ -4,10 +4,18 @@ import java.sql.Time;
 
 public class Comment {
 	private int uid;
+	private String uname;
 	private String avatar;
-	private Time time;
+	private String time;
 	private String content;
 	
+	
+	public String getUname() {
+		return uname;
+	}
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
 	public String getAvatar() {
 		return avatar;
 	}
@@ -20,10 +28,10 @@ public class Comment {
 	public void setUid(int uid) {
 		this.uid = uid;
 	}
-	public Time getTime() {
+	public String getTime() {
 		return time;
 	}
-	public void setTime(Time time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 	public String getContent() {
@@ -35,7 +43,8 @@ public class Comment {
 	
 	@Override
 	public String toString() {
-		return "Comment [uid=" + uid + ", avatar=" + avatar + ", time=" + time + "\n    , content=" + content + "]";
+		return "Comment [uid=" + uid + ", uname=" + uname + ", avatar=" + avatar + ", time=" + time + "\n    , content="
+				+ content + "]";
 	}
 	
 	

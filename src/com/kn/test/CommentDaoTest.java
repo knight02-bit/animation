@@ -10,10 +10,10 @@ public class CommentDaoTest {
 	public static void main(String[] args) throws ClassNotFoundException {
 		CommentDao dao = new CommentDao();
 		
-//		List<Comment> comments = dao.findAll();
-//		for(Comment comment : comments){
-//			System.out.println(comment);
-//		}
+		List<Comment> comments = dao.findAll();
+		for(Comment comment : comments){
+			System.out.println(comment);
+		}
 	}
 
 }
