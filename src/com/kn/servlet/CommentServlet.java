@@ -58,7 +58,6 @@ public class CommentServlet extends HttpServlet {
 			String time = dateFormat.format(calendar.getTime()).toString();
 			String message = (String)request.getParameter("message");
 			
-			System.out.println("@@@@ message"+message);
 			Comment comment = new Comment();
 			comment.setUid(uid);
 			comment.setTime(time);

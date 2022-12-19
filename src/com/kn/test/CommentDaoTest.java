@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.kn.dao.CommentDao;
 import com.kn.entity.Comment;
+import com.kn.service.CommentService;
 
 public class CommentDaoTest {
 
@@ -18,10 +19,16 @@ public class CommentDaoTest {
 //		}
 		
 		//获取时间
-		Calendar calendar= Calendar.getInstance();
-		SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		String s = dateFormat.format(calendar.getTime()).toString();
-		System.out.println(s);
+//		Calendar calendar= Calendar.getInstance();
+//		SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//		String s = dateFormat.format(calendar.getTime()).toString();
+//		System.out.println(s);
+		
+		CommentService commentService = new CommentService();
+		List<Comment> comments = commentService.findLatestComment();
+		for(Comment comment : comments){
+			System.out.println(comment);
+		}
 	}
 
 }

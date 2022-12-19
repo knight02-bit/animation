@@ -14,7 +14,9 @@ import javax.servlet.http.HttpSession;
 
 import com.kn.entity.Anim;
 import com.kn.entity.AnimPage;
+import com.kn.entity.Comment;
 import com.kn.service.AnimService;
+import com.kn.service.CommentService;
 
 public class AnimServlet extends HttpServlet {
 	
@@ -59,6 +61,14 @@ public class AnimServlet extends HttpServlet {
 				//绑定数据
 				request.setAttribute("anims", anims);
 				request.setAttribute("page", animPage);
+				
+				CommentService commentService = new CommentService();
+				List<Comment> comments = commentService.findLatestComment();
+				request.setAttribute("comments", comments);
+//				for(Comment comment : comments){
+//					System.out.println(comment);
+//				}
+				
 				
 				//获取转发器,转发
 				RequestDispatcher dispatcher = request.getRequestDispatcher("animList.jsp");

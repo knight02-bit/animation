@@ -114,17 +114,30 @@
                         </td>
                     </ul>
                 </div>
+                
                 <div class="widget widget-comments">
                     <h3 class="widget-ttl"><b>💬最新留言</b> </h3>
                     <ul>
-                        <li>
-                            <p class="widget-comments-author"><b>🕵🏼‍♀️ <a href="#">萨拉低昂的魔咒</a></b> </p>
-                            <p>有妹妹，有青梅，有天降——还是对姐妹花，但只想过佛系生活的男主</p>
-                        </li>
+						<%
+		               		List<Comment> comments = (List<Comment>)request.getAttribute("comments");
+		               		for(Comment comment : comments)	
+		               		{
+		               	%>
+	                        <li>
+	                            <p class="widget-comments-author"><b>🕵🏼‍♀️ <%=comment.getUname() %></b> </p>
+	                            <p><%=comment.getTime() %></p>
+	                            <p><%=comment.getContent() %></p>
+	                        </li>
+                        
+                        <%
+		               		}
+                        %>
+                        <!--
                         <li>
                             <p class="widget-comments-author"><b>🕵🏼‍♀️ <a href="#">哈利</a></b> </p>
                             <p>🧐我好饿</p>
-                        </li>
+                        </li> 
+                        -->
                     </ul>
                 </div>
             </div>

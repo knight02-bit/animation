@@ -57,4 +57,31 @@ public class CommentDao {
 			e.printStackTrace();
 		}
 	}
+	
+	public List<Comment> findLatestComment() throws ClassNotFoundException{
+		Connection conn = DBUtil.getConnection();
+		List<Comment> comments = new ArrayList<>();
+		
+		String sql = "select comment.uid, uname, avatar, time, content from user,comment where user.uid=comment.uid order by time desc limit 0,3";
+		try{
+			PreparedStatement prep = conn.prepareStatement(sql);
+			ResultSet resultSet = prep.executeQuery();
+			
+			while(resultSet.next()){
+				Comment comment = new Comment();
+				comment.setUid(resultSet.getInt("uid"));
+				comment.setUname(resultSet.getString("uname"));
+				comment.setAvatar(resultSet.getString("avatar"));
+				comment.setTime(resultSet.getString("time"));
+				comment.setContent(resultSet.getString("content"));
+				
+				comments.add(comment);
+			}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return comments;
+	}
 }
