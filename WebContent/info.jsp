@@ -6,7 +6,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>番荒之冢-留言区</title>
+    <title>番荒之冢-我的资料</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
@@ -36,17 +36,17 @@
     <nav class="submenu1 mainmenu3">
         <ul>
             <li>
-                <a href="list.do">首页</a>
+                <a href="menu.html">首页</a>
             </li>
-            <li class="menu-item-has-children">
+            <li class="menu-item-has-children active">
                 <a href="#">我的</a>
                 <ul class="sub-menu">
-                    <li><a href="info.jsp">我的资料</a></li>
+                    <li><a href="#">我的资料</a></li>
                     <li><a href="">追番清单</a></li>
                 </ul>
             </li>
-            <li class="active">
-                <a href="#">留言区</a>
+            <li>
+                <a href="list.chat">留言区</a>
             </li>
             <li>
                 <a href="logout.info">
@@ -58,43 +58,41 @@
     </nav>
 </header>
 
-<div class="container maincont stylization">
-	
-	
-    <div class="cont-boxed">
-        <div class="testimonials-list style-1">
-        	
-        	<%
-				List<Comment> comments = (ArrayList)request.getAttribute("comments");
-				for(Comment comment : comments)
-				{
-			%>
-				<div class="testimonials-i">
-	                <div class="testimonials-i-cont">
-	                    💡<p><%=comment.getContent() %></p>
-	                    <%
-	                    	User user = (User)request.getSession().getAttribute("u");
-	                    	if(comment.getUid() == user.getUid())
-	                    	{
-	                    %>
-	                    	<button href="">删除我的留言</button>
-	                    <%
-	                    	}
-	                    %>
-	                </div>
-	                <p class="testimonials-i-img">
-	                    <img src="<%=comment.getAvatar() %>" alt="">
-	                </p>
-	                <div class="testimonials-i-info">
-	                    <h3><%=comment.getUname() %></h3>
-	                    <p class="testimonials-i-position"> <%=comment.getTime() %> </p>
-	                </div>
-	            </div>
-			<%
-				}
-			%>
+
+<div class="container maincont">
+		
+		<%
+			User user = (User)request.getSession().getAttribute("u");
+		%>
+		
+        <div class="agent-detail">
+        <p class="agent-detail-img" style="background-image: url(<%=user.getAvatar() %>);">
+            <img src="<%=user.getAvatar() %>" alt="">
+        </p>
+        <div class="agent-detail-cont">
+            <h1 class="agent-detail-ttl"><%=user.getUname() %></h1>
+
+            <dl class="agent-detail-info">
+
+                <dt>
+                    <span class="agent-detail-info-icon"><img src="static/picture/h-ico-2.png" alt=""></span>
+                    Email
+                </dt>
+                <dd><%=user.getEmail() %></dd>
+                <dt>
+                    <span class="agent-detail-info-icon"><img src="static/picture/ico-user.png" alt=""></span>
+                    	权限等级
+                </dt>
+                <dd><%=user.getLevel()==1 ? "普通用户":"管理员" %></dd>
+            </dl>
         </div>
     </div>
+
+    <div class="stylization agent-about">
+        <h2 class="agent-about-ttl">关于 <b><%=user.getUname() %></b></h2>
+        <p><%=user.getIntro() %> </p>
+    </div>
 </div>
+
 </body>
 </html>

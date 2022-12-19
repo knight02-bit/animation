@@ -35,13 +35,13 @@
         <nav class="submenu1 mainmenu3">
             <ul>
                 <li class="active">
-                    <a href="list.do">首页</a>
+                    <a href="#">首页</a>
                 </li>
                 <li class="menu-item-has-children">
                     <a href="#">我的</a>
                     <ul class="sub-menu">
-                        <li><a href="info.html">我的资料</a></li>
-                        <li><a href="favor-list.html">追番清单</a></li>
+                        <li><a href="info.jsp">我的资料</a></li>
+                        <li><a href="">追番清单</a></li>
                     </ul>
                 </li>
                 <li>
