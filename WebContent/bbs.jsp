@@ -49,7 +49,7 @@
                 <a href="list.chat">留言区</a>
             </li>
             <li>
-                <a href="">
+                <a href="logout.info">
                     <img src="static/image/modal-close.png" alt="">
                     退出登录
                 </a>

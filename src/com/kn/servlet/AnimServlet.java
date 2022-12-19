@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kn.entity.Anim;
 import com.kn.entity.AnimPage;
@@ -20,12 +21,22 @@ public class AnimServlet extends HttpServlet {
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession();
+		
 		String uri = request.getRequestURI();
 		String path = uri.substring(uri.lastIndexOf("/"),uri.lastIndexOf("."));
 		
 		AnimService service = new AnimService();
 		
 		if(path.equals("/list")){
+			
+			Object obj = session.getAttribute("u");
+			if(obj == null){
+				//Ìø×ª»ØµÇÂ¼Ò³Ãæ 
+				response.sendRedirect("login.jsp");
+				return;
+			}
+			
 			List<Anim> anims = null;
 			
 			String aname = request.getParameter("aname");

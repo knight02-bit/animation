@@ -52,6 +52,9 @@ public class UserServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}else if(path.equals("/logout")){
+			session.setAttribute("u", null);
+			response.sendRedirect("login.info");
 		}
 	}
 }

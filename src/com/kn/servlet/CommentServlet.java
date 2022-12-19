@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kn.entity.Comment;
 import com.kn.service.CommentService;
@@ -17,11 +18,21 @@ public class CommentServlet extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession();
+		
 		String uri = request.getRequestURI();
 		String path = uri.substring(uri.lastIndexOf("/"),uri.lastIndexOf("."));
 		
 		CommentService service = new CommentService();
 		if(path.equals("/list")){
+			
+			Object obj = session.getAttribute("u");
+			if(obj == null){
+				//Ìø×ª»ØµÇÂ¼Ò³Ãæ 
+				response.sendRedirect("login.jsp");
+				return;
+			}
+			
 			List<Comment> comments = null;
 			
 			try {
