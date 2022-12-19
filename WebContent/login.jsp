@@ -8,29 +8,39 @@
 		<meta charset="utf-8">
 		<link href="static/css/login.css" rel='stylesheet' type='text/css' />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
 </head>
 <body class="bg">
 	 <div class="main">
 		<div class="login-form">
 			<h1>用户登录</h1>
-				<form>
+				<form action="login.info" method="post">
 						<tr>
 							<td><span>邮箱:</span></td>
 							<td>
-								<input type="text" class="text" title="请输入用户名" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
+								<span style="color:red">
+										<%=request.getAttribute("umsg")==null?"":request.getAttribute("umsg") %>
+								</span>
+							</td>
+							<td>
+								<input type="text" class="text" name="email"/>
 							</td>
 						</tr>
 						<tr>
 							<td><span>密码:</span></td>
 							<td>
-								<input type="text" class="text" title="请输入用户名" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
+								<span style="color:red">
+										<%=request.getAttribute("pmsg")==null?"":request.getAttribute("pmsg") %>
+								</span>
+							</td>
+							
+							<td>
+								<input type="password" class="text" name="pwd" />
 							</td>
 						</tr>
 						<div class="submit">
-							<input type="submit" onclick="myFunction()" value="登录" >
+							<input type="submit" value="登录" >
 						</div>
-					<!-- <p><a href="#">Forgot Password ?</a></p> -->
 				</form>
 			</div>
    			<!-- <div class="copy-right"></div> -->

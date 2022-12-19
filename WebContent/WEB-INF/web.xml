@@ -8,13 +8,20 @@
     <servlet-name>anim</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
-  
-    <servlet>
+  <servlet>
     <servlet-name>bbs</servlet-name>
     <servlet-class>com.kn.servlet.CommentServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>bbs</servlet-name>
     <url-pattern>*.chat</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>user</servlet-name>
+    <servlet-class>com.kn.servlet.UserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>user</servlet-name>
+    <url-pattern>*.info</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -64,7 +64,9 @@
 	    	int current_page = p.getCurrentPage();
 	    	int pageNum = p.getPageNum();
 	    %>
-
+		<span>
+			<%=request.getSession().getAttribute("u") %>
+		</span>
         <h1 class="mainttl"><span>为您找到相关结果 <%=p.getRowNum() %> 个</span></h1>
 
 
