@@ -10,6 +10,8 @@ import java.util.List;
 import com.kn.entity.Comment;
 import com.kn.util.DBUtil;
 
+import sun.launcher.resources.launcher;
+
 public class CommentDao {
 	
 	public List<Comment> findAll() throws ClassNotFoundException{
@@ -37,5 +39,22 @@ public class CommentDao {
 		}
 		
 		return comments;
+	}
+	
+	public void add(Comment comment) throws ClassNotFoundException{
+		Connection conn = DBUtil.getConnection();
+		String sql = "insert into comment(uid, time, content) values(?,?,?)";
+		
+		try {
+			PreparedStatement prep = conn.prepareStatement(sql);
+			prep.setInt(1, comment.getUid());
+			prep.setString(2, comment.getTime());
+			prep.setString(3, comment.getContent());
+			
+			prep.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

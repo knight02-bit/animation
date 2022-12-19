@@ -11,4 +11,8 @@ public class CommentService {
 	public List<Comment> list() throws ClassNotFoundException{
 		return dao.findAll();
 	}
+	
+	public void add(Comment comment) throws ClassNotFoundException{
+		dao.add(comment);
+	}
 }

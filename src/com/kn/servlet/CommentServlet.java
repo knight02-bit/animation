@@ -1,6 +1,8 @@
 package com.kn.servlet;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kn.entity.Comment;
+import com.kn.entity.User;
 import com.kn.service.CommentService;
 
 public class CommentServlet extends HttpServlet {
@@ -20,19 +23,18 @@ public class CommentServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		
+		Object obj = session.getAttribute("u");
+		if(obj == null){
+			//跳转回登录页面 
+			response.sendRedirect("login.jsp");
+			return;
+		}
+		
 		String uri = request.getRequestURI();
 		String path = uri.substring(uri.lastIndexOf("/"),uri.lastIndexOf("."));
 		
 		CommentService service = new CommentService();
 		if(path.equals("/list")){
-			
-			Object obj = session.getAttribute("u");
-			if(obj == null){
-				//跳转回登录页面 
-				response.sendRedirect("login.jsp");
-				return;
-			}
-			
 			List<Comment> comments = null;
 			
 			try {
@@ -45,7 +47,30 @@ public class CommentServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		else if(path.equals("/add")){
+			User user = (User)session.getAttribute("u");
+			int uid = user.getUid();
 			
+			//获取时间
+			Calendar calendar= Calendar.getInstance();
+			SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			String time = dateFormat.format(calendar.getTime()).toString();
+			String message = (String)request.getParameter("message");
+			
+			System.out.println("@@@@ message"+message);
+			Comment comment = new Comment();
+			comment.setUid(uid);
+			comment.setTime(time);
+			comment.setContent(message);
+			try {
+				service.add(comment);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			response.sendRedirect("list.chat");
 		}
 	}
 

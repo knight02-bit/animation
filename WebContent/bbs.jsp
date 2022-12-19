@@ -59,8 +59,12 @@
 </header>
 
 <div class="container maincont stylization">
-	
-	
+	<form action="add.chat" method="post">
+        <div >
+            <textarea name="message" id="message" placeholder="发送一条友善的留言" font-size="20px" cols="30" rows="5"></textarea>
+        </div>
+        <button type="submit" >发送留言</button>
+    </form>
     <div class="cont-boxed">
         <div class="testimonials-list style-1">
         	

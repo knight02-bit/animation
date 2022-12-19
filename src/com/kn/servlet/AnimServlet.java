@@ -23,20 +23,19 @@ public class AnimServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		
+		Object obj = session.getAttribute("u");
+		if(obj == null){
+			//跳转回登录页面 
+			response.sendRedirect("login.jsp");
+			return;
+		}
+		
 		String uri = request.getRequestURI();
 		String path = uri.substring(uri.lastIndexOf("/"),uri.lastIndexOf("."));
 		
 		AnimService service = new AnimService();
 		
 		if(path.equals("/list")){
-			
-			Object obj = session.getAttribute("u");
-			if(obj == null){
-				//跳转回登录页面 
-				response.sendRedirect("login.jsp");
-				return;
-			}
-			
 			List<Anim> anims = null;
 			
 			String aname = request.getParameter("aname");
