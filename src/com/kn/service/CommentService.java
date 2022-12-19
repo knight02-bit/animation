@@ -16,6 +16,10 @@ public class CommentService {
 		dao.add(comment);
 	}
 	
+	public void delete(Comment comment) throws ClassNotFoundException{
+		dao.delete(comment);
+	}
+	
 	public List<Comment> findLatestComment() throws ClassNotFoundException{
 		return dao.findLatestComment();
 	}

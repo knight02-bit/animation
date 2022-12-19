@@ -81,7 +81,7 @@
 	                    	if(comment.getUid() == user.getUid())
 	                    	{
 	                    %>
-	                    	<button href="">删除我的留言</button>
+	                    	<a href="del.chat?uid=<%=comment.getUid() %>&&time=<%=comment.getTime() %>">✖删除</a>
 	                    <%
 	                    	}
 	                    %>

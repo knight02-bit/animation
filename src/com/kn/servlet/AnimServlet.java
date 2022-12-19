@@ -64,11 +64,7 @@ public class AnimServlet extends HttpServlet {
 				
 				CommentService commentService = new CommentService();
 				List<Comment> comments = commentService.findLatestComment();
-				request.setAttribute("comments", comments);
-//				for(Comment comment : comments){
-//					System.out.println(comment);
-//				}
-				
+				request.setAttribute("comments", comments);				
 				
 				//获取转发器,转发
 				RequestDispatcher dispatcher = request.getRequestDispatcher("animList.jsp");

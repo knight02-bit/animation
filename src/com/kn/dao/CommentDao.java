@@ -51,7 +51,23 @@ public class CommentDao {
 			prep.setString(2, comment.getTime());
 			prep.setString(3, comment.getContent());
 			
-			prep.execute();
+			prep.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void delete(Comment comment) throws ClassNotFoundException{
+		Connection conn = DBUtil.getConnection();
+		String sql = "delete from comment where uid=? and time=?";
+		
+		try {
+			PreparedStatement prep = conn.prepareStatement(sql);
+			prep.setInt(1, comment.getUid());
+			prep.setString(2, comment.getTime());
+			
+			prep.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

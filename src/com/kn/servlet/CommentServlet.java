@@ -71,6 +71,22 @@ public class CommentServlet extends HttpServlet {
 			
 			response.sendRedirect("list.chat");
 		}
+		else if(path.equals("/del")){
+			int uid = Integer.parseInt(request.getParameter("uid"));
+			String time = (String)request.getParameter("time");
+			Comment comment = new Comment();
+			comment.setUid(uid);
+			comment.setTime(time);
+			
+			try {
+				service.delete(comment);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+					
+			response.sendRedirect("list.chat");
+		}
 	}
 
 }
