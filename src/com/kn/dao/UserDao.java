@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.kn.entity.Anim;
 import com.kn.entity.User;
 import com.kn.util.DBUtil;
 
@@ -40,5 +43,36 @@ public class UserDao {
 			}
 			
 			return user;
+		}
+		
+		public List<Anim> findFavorListByUid(int uid) throws ClassNotFoundException{
+			List<Anim> favorAnims = new ArrayList<Anim>();
+			Connection conn = DBUtil.getConnection();
+			String sql = "select animation.aid,aname,state,year,cover,link,content from favorAnim, animation "
+					+ "where favorAnim.uid=? and favorAnim.aid=animation.aid";
+			
+			try{
+				PreparedStatement prep = conn.prepareStatement(sql);
+				prep.setInt(1, uid);
+				ResultSet resultSet = prep.executeQuery();
+				
+				while(resultSet.next()){
+					Anim anim = new Anim();
+					anim.setAid(resultSet.getInt("aid"));
+					anim.setAname(resultSet.getString("aname"));
+					anim.setState(resultSet.getInt("state"));
+					anim.setYear(resultSet.getInt("year"));
+					anim.setCover(resultSet.getString("cover"));
+					anim.setLink(resultSet.getString("link"));
+					anim.setContent(resultSet.getString("content"));
+					
+					favorAnims.add(anim);
+				}
+				
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			return favorAnims;
 		}
 }

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kn.entity.Anim;
 import com.kn.entity.User;
 import com.kn.service.UserService;
 
@@ -55,6 +56,28 @@ public class UserServlet extends HttpServlet {
 		}else if(path.equals("/logout")){
 			session.setAttribute("u", null);
 			response.sendRedirect("login.info");
+		}else if(path.equals("/favorList")){
+			Object obj = session.getAttribute("u");
+			if(obj == null){
+				//跳转回登录页面 
+				response.sendRedirect("login.jsp");
+				return;
+			}
+			
+			List<Anim> favorAnims = null;
+			User user = (User)session.getAttribute("u");
+			int uid = user.getUid();
+			
+			try {
+				favorAnims = service.findFavorListByUid(uid);
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("favorAnims", favorAnims);
+			
+			//获取转发器,转发
+			RequestDispatcher dispatcher = request.getRequestDispatcher("favorList.jsp");
+			dispatcher.forward(request, response);
 		}
 	}
 }

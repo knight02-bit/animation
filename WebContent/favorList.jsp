@@ -6,7 +6,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>番荒之冢-我的资料</title>
+    <title>番荒之冢-追番清单</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
@@ -41,8 +41,8 @@
             <li class="menu-item-has-children active">
                 <a href="#">我的</a>
                 <ul class="sub-menu">
-                    <li><a href="#">我的资料</a></li>
-                    <li><a href="favorList.info">追番清单</a></li>
+                    <li><a href="info.jsp">我的资料</a></li>
+                    <li class="active"><a href="#">追番清单</a></li>
                 </ul>
             </li>
             <li>
@@ -58,41 +58,53 @@
     </nav>
 </header>
 
-
 <div class="container maincont">
-		
-		<%
-			User user = (User)request.getSession().getAttribute("u");
-		%>
-		
-        <div class="agent-detail">
-        <p class="agent-detail-img" style="background-image: url(<%=user.getAvatar() %>);">
-            <img src="<%=user.getAvatar() %>" alt="">
-        </p>
-        <div class="agent-detail-cont">
-            <h1 class="agent-detail-ttl"><%=user.getUname() %></h1>
+	<%
+		List<Anim> favorAnims = (List<Anim>)request.getAttribute("favorAnims");
+	%>
 
-            <dl class="agent-detail-info">
+    <div class="mainttl-wrap">
+        <h1 class="mainttl"><span>你有 <%=favorAnims.size() %> 部番在追</span></h1>
+    </div>
+    
+    <div class="row agents-list">
+	    <%
+	    	
+	    	for(Anim anim : favorAnims)
+	    	{
+	    %>
+    	<div class="cf-xs-6 cf-sm-6 cf-lg-4 col-xs-6 col-sm-6 col-md-4 agent-i-col">
+            <div class="agent-i">
+                <a href="" class="agent-i-img">
+                    <img src="<%=anim.getCover() %>" alt="">
+                </a>
 
-                <dt>
-                    <span class="agent-detail-info-icon"><img src="static/picture/h-ico-2.png" alt=""></span>
-                    Email
-                </dt>
-                <dd><%=user.getEmail() %></dd>
-                <dt>
-                    <span class="agent-detail-info-icon"><img src="static/picture/ico-user.png" alt=""></span>
-                    	权限等级
-                </dt>
-                <dd><%=user.getLevel()==1 ? "普通用户":"管理员" %></dd>
-            </dl>
+                <h3 class="agent-i-ttl">
+                    <a href=""><%=anim.getAname() %></a>
+                </h3>
+                <a href="#" class="modalform-btn agent-i-call">取消追番</a>
+            </div>
         </div>
+        <%
+	    	}
+        %>
     </div>
+    
+    <!--
+    .pagi-left - left align
+    .pagi-right - right align
+    -->
 
-    <div class="stylization agent-about">
-        <h2 class="agent-about-ttl">关于 <b><%=user.getUname() %></b></h2>
-        <p><%=user.getIntro() %> </p>
-    </div>
+    <ul class="pagi pagi-right">
+        <li><a href="#">👈</a></li>
+        <li><a href="#">1</a></li>
+        <li><span>2</span></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">...</a></li>
+        <li><a href="#">19</a></li>
+        <li><a href="#">👉</a></li>
+    </ul>
 </div>
-
 </body>
 </html>

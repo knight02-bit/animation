@@ -42,7 +42,7 @@
                 <a href="#">我的</a>
                 <ul class="sub-menu">
                     <li><a href="info.jsp">我的资料</a></li>
-                    <li><a href="">追番清单</a></li>
+                    <li><a href="favorList.info">追番清单</a></li>
                 </ul>
             </li>
             <li class="active">
