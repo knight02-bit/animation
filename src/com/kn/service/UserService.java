@@ -13,6 +13,10 @@ public class UserService {
 		return dao.findByEmail(email);
 	}
 	
+	public User findByUid(int uid) throws ClassNotFoundException{
+		return dao.findByUid(uid);
+	}
+	
 	public List<Anim> findFavorListByUid(int uid) throws ClassNotFoundException{
 		return dao.findFavorListByUid(uid);
 	}

@@ -12,7 +12,7 @@ import com.kn.entity.User;
 import com.kn.util.DBUtil;
 
 public class UserDao {
-	//根据用户名查询用户信息
+		//根据用户名查询用户信息
 		public User findByEmail(String email) throws ClassNotFoundException{
 			Connection con = DBUtil.getConnection();
 			User user = null;
@@ -35,8 +35,37 @@ public class UserDao {
 					user.setIntro(resultSet.getString("intro"));
 					
 				}
-//				System.out.println(user);
-				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return user;
+		}
+		
+		//根据uid查询个人资料
+		public User findByUid(int uid) throws ClassNotFoundException{
+			Connection con = DBUtil.getConnection();
+			User user = null;
+
+			String sql = "select * from user where uid=?";
+			
+			try {
+				PreparedStatement prep = con.prepareStatement(sql);
+				prep.setInt(1, uid);
+
+				ResultSet resultSet = prep.executeQuery();
+				while(resultSet.next()){
+					user = new User();
+					user.setUid(resultSet.getInt("uid"));
+					user.setEmail(resultSet.getString("email"));
+					user.setPwd(resultSet.getString("pwd"));
+					user.setUname(resultSet.getString("uname"));
+					user.setLevel(resultSet.getInt("level"));
+					user.setAvatar(resultSet.getString("avatar"));
+					user.setIntro(resultSet.getString("intro"));
+					
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

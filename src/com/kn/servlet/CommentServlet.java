@@ -54,7 +54,7 @@ public class CommentServlet extends HttpServlet {
 			
 			//获取时间
 			Calendar calendar= Calendar.getInstance();
-			SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String time = dateFormat.format(calendar.getTime()).toString();
 			String message = (String)request.getParameter("message");
 			

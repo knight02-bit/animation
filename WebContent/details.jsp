@@ -27,6 +27,9 @@
 </head>
 <body>
 
+<%
+	User user = (User)request.getSession().getAttribute("u");
+%>
 <header class="site-header3">
     <a href="list.do" class="h-logo overlay">
         <div class="h-logo-inner">
@@ -41,7 +44,7 @@
             <li class="menu-item-has-children">
                 <a href="#">我的</a>
                 <ul class="sub-menu">
-                    <li><a href="info.jsp">我的资料</a></li>
+                    <li><a href="details.info?uid=<%=user.getUid() %>">我的资料</a></li>
                     <li><a href="favorList.info">追番清单</a></li>
                 </ul>
             </li>
@@ -97,7 +100,20 @@
                     <span class="agent-detail-info-icon"><img src="static/picture/h-ico-1.png" alt=""></span>
                     有效链接
                 </dt>
-                <dd><a href="<%=anim.getLink() %>">👉点击直达👈</a></dd>
+                <dd>
+                	<%
+                		if(anim.getLink() != null){
+                	%>
+                		<a href="<%=anim.getLink() %>">👉点击直达👈</a>
+                	<%
+                		}else{
+                	%>
+                		<p>暂无, 欢迎在留言区咨询, <br/>或者提交修改意见</p>
+                	<%
+                		}
+                	%>
+                	
+                </dd>
 
                 <dt>
                     <span class="agent-detail-info-icon"><img src="static/picture/ico-user.png" alt=""></span>

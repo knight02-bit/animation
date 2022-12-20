@@ -27,6 +27,10 @@
 </head>
 <body>
 
+<%
+	User user = (User)request.getSession().getAttribute("u");
+%>
+
 <header class="site-header3">
     <a href="list.do" class="h-logo overlay">
         <div class="h-logo-inner">
@@ -41,7 +45,7 @@
             <li class="menu-item-has-children active">
                 <a href="#">我的</a>
                 <ul class="sub-menu">
-                    <li><a href="info.jsp">我的资料</a></li>
+                    <li><a href="details.info?uid=<%=user.getUid() %>">我的资料</a></li>
                     <li class="active"><a href="#">追番清单</a></li>
                 </ul>
             </li>
@@ -60,7 +64,6 @@
 
 <div class="container maincont">
 	<%
-		User user = (User)request.getSession().getAttribute("u");
 		List<Anim> favorAnims = (List<Anim>)request.getAttribute("favorAnims");
 	%>
 

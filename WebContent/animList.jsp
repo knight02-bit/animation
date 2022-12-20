@@ -25,6 +25,11 @@
     <link rel="stylesheet" href="static/css/style.css">
 
 </head>
+
+<%
+	User user = (User)request.getSession().getAttribute("u");
+%>
+
 <body>
     <header class="site-header3">
         <a href="list.do" class="h-logo overlay">
@@ -40,7 +45,7 @@
                 <li class="menu-item-has-children">
                     <a href="#">我的</a>
                     <ul class="sub-menu">
-                        <li><a href="info.jsp">我的资料</a></li>
+                        <li><a href="details.info?uid=<%=user.getUid() %>">我的资料</a></li>
                         <li><a href="favorList.info">追番清单</a></li>
                     </ul>
                 </li>
@@ -122,7 +127,7 @@
 		               		{
 		               	%>
 	                        <li>
-	                            <p class="widget-comments-author"><b>🕵🏼‍♀️ <%=comment.getUname() %></b> </p>
+	                            <p class="widget-comments-author"><a href="details.info?uid=<%=comment.getUid() %>"><b>🕵🏼‍♀️ <%=comment.getUname() %></b> </a> </p>
 	                            <p><%=comment.getTime() %></p>
 	                            <p><%=comment.getContent() %></p>
 	                        </li>

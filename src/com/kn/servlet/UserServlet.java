@@ -57,6 +57,27 @@ public class UserServlet extends HttpServlet {
 			session.setAttribute("u", null);
 			response.sendRedirect("login.info");
 			
+		}else if(path.equals("/details")){
+			Object obj = session.getAttribute("u");
+			if(obj == null){
+				//Ìø×ª»ØµÇÂ¼Ò³Ãæ 
+				response.sendRedirect("login.jsp");
+				return;
+			}
+			
+			int uidToFind = Integer.parseInt(request.getParameter("uid"));
+			request.setAttribute("uidToFind", uidToFind);
+			
+			try {
+				User user = service.findByUid(uidToFind);
+				
+				request.setAttribute("user", user);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("info.jsp");
+				dispatcher.forward(request, response);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else if(path.equals("/favorList")){
 			Object obj = session.getAttribute("u");
 			if(obj == null){

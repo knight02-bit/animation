@@ -27,6 +27,10 @@
 </head>
 <body>
 
+<%
+	User user = (User)request.getSession().getAttribute("u");
+%>
+
 <header class="site-header3">
     <a href="list.do" class="h-logo overlay">
         <div class="h-logo-inner">
@@ -41,7 +45,7 @@
             <li class="menu-item-has-children">
                 <a href="#">我的</a>
                 <ul class="sub-menu">
-                    <li><a href="info.jsp">我的资料</a></li>
+                    <li><a href="details.info?uid=<%=user.getUid() %>">我的资料</a></li>
                     <li><a href="favorList.info">追番清单</a></li>
                 </ul>
             </li>
@@ -77,7 +81,6 @@
 	                <div class="testimonials-i-cont">
 	                    💡<p><%=comment.getContent() %></p>
 	                    <%
-	                    	User user = (User)request.getSession().getAttribute("u");
 	                    	if(comment.getUid() == user.getUid())
 	                    	{
 	                    %>
@@ -87,10 +90,10 @@
 	                    %>
 	                </div>
 	                <p class="testimonials-i-img">
-	                    <img src="<%=comment.getAvatar() %>" alt="">
+	                    <a href="details.info?uid=<%=comment.getUid() %>"><img src="<%=comment.getAvatar() %>" alt=""></a> 
 	                </p>
 	                <div class="testimonials-i-info">
-	                    <h3><%=comment.getUname() %></h3>
+	                    <h3><a href="details.info?uid=<%=comment.getUid() %>"><%=comment.getUname() %></a> </h3>
 	                    <p class="testimonials-i-position"> <%=comment.getTime() %> </p>
 	                </div>
 	            </div>

@@ -6,7 +6,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>番荒之冢-我的资料</title>
+    <title>番荒之冢-个人资料</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
@@ -27,6 +27,10 @@
 </head>
 <body>
 
+<%
+	int uidToFind = Integer.parseInt(request.getAttribute("uidToFind").toString());
+%>
+
 <header class="site-header3">
     <a href="list.do" class="h-logo overlay">
         <div class="h-logo-inner">
@@ -38,13 +42,32 @@
             <li>
                 <a href="list.do">首页</a>
             </li>
+            <%
+            	// 判断是否查看本人资料
+              	User myUser = (User)request.getSession().getAttribute("u");
+              	if(uidToFind == myUser.getUid()){
+            %>
             <li class="menu-item-has-children active">
                 <a href="#">我的</a>
                 <ul class="sub-menu">
-                    <li><a href="#">我的资料</a></li>
+                    <li class="active"><a href="#">我的资料</a></li>
                     <li><a href="favorList.info">追番清单</a></li>
                 </ul>
             </li>
+            
+            <%
+                }else{
+            %>
+            <li class="menu-item-has-children">
+                <a href="#">我的</a>
+                <ul class="sub-menu">
+                	<li><a href="details.info?uid=<%=myUser.getUid() %>">我的资料</a></li>
+                    <li><a href="favorList.info">追番清单</a></li>
+                </ul>
+            </li>
+            <%
+              	}
+            %>
             <li>
                 <a href="list.chat">留言区</a>
             </li>
@@ -62,7 +85,7 @@
 <div class="container maincont">
 		
 		<%
-			User user = (User)request.getSession().getAttribute("u");
+			User user = (User)request.getAttribute("user");
 		%>
 		
         <div class="agent-detail">
@@ -90,7 +113,20 @@
 
     <div class="stylization agent-about">
         <h2 class="agent-about-ttl">关于 <b><%=user.getUname() %></b></h2>
-        <p><%=user.getIntro() %> </p>
+        <p>
+        <%
+        	if(user.getIntro() == null){
+        %>
+       		这个人很懒,还未留个人介绍
+        <%
+        	}else{
+        %>
+        	<%=user.getIntro() %> 
+        <%
+        	}
+        %>
+        
+        </p>
     </div>
 </div>
 
