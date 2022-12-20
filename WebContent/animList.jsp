@@ -27,7 +27,7 @@
 </head>
 <body>
     <header class="site-header3">
-        <a href="menu.html" class="h-logo overlay">
+        <a href="list.do" class="h-logo overlay">
             <div class="h-logo-inner">
                 <img src="static/picture/番荒之冢1.png" alt="有一种脑干缺失的美">
             </div>
@@ -130,12 +130,6 @@
                         <%
 		               		}
                         %>
-                        <!--
-                        <li>
-                            <p class="widget-comments-author"><b>🕵🏼‍♀️ <a href="#">哈利</a></b> </p>
-                            <p>🧐我好饿</p>
-                        </li> 
-                        -->
                     </ul>
                 </div>
             </div>

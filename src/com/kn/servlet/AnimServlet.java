@@ -2,6 +2,7 @@ package com.kn.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -15,8 +16,10 @@ import javax.servlet.http.HttpSession;
 import com.kn.entity.Anim;
 import com.kn.entity.AnimPage;
 import com.kn.entity.Comment;
+import com.kn.entity.User;
 import com.kn.service.AnimService;
 import com.kn.service.CommentService;
+import com.kn.service.UserService;
 
 public class AnimServlet extends HttpServlet {
 	
@@ -38,7 +41,7 @@ public class AnimServlet extends HttpServlet {
 		AnimService service = new AnimService();
 		
 		if(path.equals("/list")){
-			List<Anim> anims = null;
+			List<Anim> anims = new ArrayList<Anim>();
 			
 			String aname = request.getParameter("aname");
 			String current = request.getParameter("current");
@@ -64,13 +67,27 @@ public class AnimServlet extends HttpServlet {
 				
 				CommentService commentService = new CommentService();
 				List<Comment> comments = commentService.findLatestComment();
-				request.setAttribute("comments", comments);				
+				request.setAttribute("comments", comments);
 				
 				//获取转发器,转发
 				RequestDispatcher dispatcher = request.getRequestDispatcher("animList.jsp");
 				dispatcher.forward(request, response);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(path.equals("/details")){
+			int aid = Integer.parseInt(request.getParameter("aid"));
+			Anim anim = null;
+			try {
+				anim = service.findByAid(aid);
+				int num = service.countFavorNumByAid(aid);
+				request.setAttribute("anim", anim);
+				request.setAttribute("num", num);
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("details.jsp");
+				dispatcher.forward(request, response);
+			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
 		}

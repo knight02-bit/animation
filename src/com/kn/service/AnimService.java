@@ -43,4 +43,7 @@ public class AnimService {
 		return dao.findRowNum(animPage);
 	}
 	
+	public int countFavorNumByAid(int aid) throws ClassNotFoundException{
+		return dao.countFavorNumByAid(aid);
+	}
 }

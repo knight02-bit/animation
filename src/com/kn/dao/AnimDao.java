@@ -246,6 +246,26 @@ public class AnimDao {
 		
 		return cnt;
 	}
+	
+	//²éÑ¯×··¬ÈËÊý
+	public int countFavorNumByAid(int aid) throws ClassNotFoundException{
+		Connection conn = DBUtil.getConnection();
+		int cnt = 0;
+		String sql = "select count(*) cnt from favoranim where aid=?";
+		
+		try {
+			PreparedStatement prep = conn.prepareStatement(sql);
+			prep.setInt(1, aid);
+			ResultSet resultSet = prep.executeQuery();
+			
+			if(resultSet.next()){
+				cnt = resultSet.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cnt;
+	}
 }
 
 
