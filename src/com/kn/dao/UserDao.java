@@ -75,4 +75,20 @@ public class UserDao {
 			
 			return favorAnims;
 		}
+		
+		public void deleteFavorAnim(int uid, int aid) throws ClassNotFoundException{
+			Connection conn = DBUtil.getConnection();
+			String sql = "delete from favoranim where uid=? and aid=?";
+			
+			try {
+				PreparedStatement prep = conn.prepareStatement(sql);
+				prep.setInt(1, uid);
+				prep.setInt(2, aid);
+				
+				prep.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 }

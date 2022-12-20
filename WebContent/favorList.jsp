@@ -60,6 +60,7 @@
 
 <div class="container maincont">
 	<%
+		User user = (User)request.getSession().getAttribute("u");
 		List<Anim> favorAnims = (List<Anim>)request.getAttribute("favorAnims");
 	%>
 
@@ -82,29 +83,14 @@
                 <h3 class="agent-i-ttl">
                     <a href=""><%=anim.getAname() %></a>
                 </h3>
-                <a href="#" class="modalform-btn agent-i-call">取消追番</a>
+                <a href="favorDel.info?uid=<%=user.getUid() %>&&aid=<%=anim.getAid() %>" class="modalform-btn agent-i-call">取消追番</a>
             </div>
         </div>
         <%
 	    	}
         %>
     </div>
-    
-    <!--
-    .pagi-left - left align
-    .pagi-right - right align
-    -->
-
-    <ul class="pagi pagi-right">
-        <li><a href="#">👈</a></li>
-        <li><a href="#">1</a></li>
-        <li><span>2</span></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">...</a></li>
-        <li><a href="#">19</a></li>
-        <li><a href="#">👉</a></li>
-    </ul>
+    <!-- 追番清单分页 -->
 </div>
 </body>
 </html>
