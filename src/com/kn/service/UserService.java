@@ -24,4 +24,12 @@ public class UserService {
 	public void deleteFavorAnim(int uid, int aid) throws ClassNotFoundException{
 		dao.deleteFavorAnim(uid, aid);
 	}
+	
+	public void addFavorAnim(int uid, int aid) throws ClassNotFoundException{
+		dao.addFavorAnim(uid, aid);
+	}
+	
+	public boolean isFavor(int uid, int aid) throws ClassNotFoundException{
+		return dao.isFavor(uid, aid);
+	}
 }

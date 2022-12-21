@@ -120,7 +120,36 @@
                     追番人数
                 </dt>
                 <dd><%=favorNum %></dd>
-
+                <dt> </dt>
+                
+                <dd>
+                	
+                	<%
+                		int isFavor = Integer.parseInt(request.getAttribute("isFavor").toString());
+                		if(isFavor == 0){
+                	%>
+	                	<a href="favorAdd.info?uid=<%=user.getUid() %>&&aid=<%=anim.getAid() %>">
+	                		<button>俺也要追!</button>
+	                	</a>
+                	<%
+                		}else{
+                	%>
+                		<span style="color:red">(已追番)</span>
+                	<%
+                		}
+                	%>
+                	
+                </dd>
+                <%
+               		if(user.getLevel() == 2){
+               	%>
+                <dt> </dt>
+                <dd>
+                	<a href=""><button width=4px>编辑信息 </button></a>
+                </dd>
+				<%
+               		}
+               	%>
             </dl>
         </div>
     </div>

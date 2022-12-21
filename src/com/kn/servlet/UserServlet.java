@@ -53,11 +53,13 @@ public class UserServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if(path.equals("/logout")){
+		}
+		else if(path.equals("/logout")){
 			session.setAttribute("u", null);
 			response.sendRedirect("login.info");
 			
-		}else if(path.equals("/details")){
+		}
+		else if(path.equals("/details")){
 			Object obj = session.getAttribute("u");
 			if(obj == null){
 				//跳转回登录页面 
@@ -78,7 +80,8 @@ public class UserServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if(path.equals("/favorList")){
+		}
+		else if(path.equals("/favorList")){
 			Object obj = session.getAttribute("u");
 			if(obj == null){
 				//跳转回登录页面 
@@ -100,7 +103,8 @@ public class UserServlet extends HttpServlet {
 			//获取转发器,转发
 			RequestDispatcher dispatcher = request.getRequestDispatcher("favorList.jsp");
 			dispatcher.forward(request, response);
-		}else if(path.equals("/favorDel")){
+		}
+		else if(path.equals("/favorDel")){
 			Object obj = session.getAttribute("u");
 			if(obj == null){
 				//跳转回登录页面 
@@ -117,6 +121,25 @@ public class UserServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			response.sendRedirect("favorList.info");
+		}
+		else if(path.equals("/favorAdd")){
+			Object obj = session.getAttribute("u");
+			if(obj == null){
+				//跳转回登录页面 
+				response.sendRedirect("login.jsp");
+				return;
+			}
+			
+			int uid = Integer.parseInt(request.getParameter("uid"));
+			int aid = Integer.parseInt(request.getParameter("aid"));
+			try {
+				service.addFavorAnim(uid, aid);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			response.sendRedirect("details.do?aid="+aid);
 		}
 	}
 }

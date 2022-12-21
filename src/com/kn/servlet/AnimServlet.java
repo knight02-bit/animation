@@ -77,13 +77,18 @@ public class AnimServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else if(path.equals("/details")){
+			UserService userService = new UserService();
+			User user = (User)session.getAttribute("u");
 			int aid = Integer.parseInt(request.getParameter("aid"));
+			
 			Anim anim = null;
 			try {
 				anim = service.findByAid(aid);
 				int num = service.countFavorNumByAid(aid);
 				request.setAttribute("anim", anim);
 				request.setAttribute("num", num);
+				boolean isFavor = userService.isFavor(user.getUid(), aid);
+				request.setAttribute("isFavor", isFavor?1:0);
 				
 				RequestDispatcher dispatcher = request.getRequestDispatcher("details.jsp");
 				dispatcher.forward(request, response);

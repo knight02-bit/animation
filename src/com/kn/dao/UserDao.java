@@ -120,4 +120,41 @@ public class UserDao {
 				e.printStackTrace();
 			}
 		}
+		
+		public void addFavorAnim(int uid, int aid) throws ClassNotFoundException{
+			Connection conn = DBUtil.getConnection();
+			String sql = "insert into favoranim values(?,?);";
+			
+			try {
+				PreparedStatement prep = conn.prepareStatement(sql);
+				prep.setInt(1, uid);
+				prep.setInt(2, aid);
+				
+				prep.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		public boolean isFavor(int uid, int aid) throws ClassNotFoundException{
+			Connection conn = DBUtil.getConnection();
+			String sql = "select * from favorAnim where uid=? and aid=?";
+			boolean res = false;
+			try {
+				PreparedStatement prep = conn.prepareStatement(sql);
+				prep.setInt(1, uid);
+				prep.setInt(2, aid);
+				ResultSet resultSet = prep.executeQuery();
+				
+				if(resultSet.next()){
+					res = true;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return res;
+		}
 }

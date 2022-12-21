@@ -10,11 +10,13 @@ public class UserDaoTest {
 	public static void main(String[] args) throws ClassNotFoundException {
 		UserDao dao = new UserDao();
 
-		List<Anim> favorAnims = dao.findFavorListByUid(7);
+//		List<Anim> favorAnims = dao.findFavorListByUid(7);
+//		
+//		for(Anim anim : favorAnims){
+//			System.out.println(anim);
+//		}
 		
-		for(Anim anim : favorAnims){
-			System.out.println(anim);
-		}
+		dao.addFavorAnim(4, 10);
 	}
 
 }
