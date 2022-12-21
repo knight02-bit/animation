@@ -28,6 +28,7 @@
 <body>
 
 <%
+	User myUser = (User)request.getSession().getAttribute("u");
 	int uidToFind = Integer.parseInt(request.getAttribute("uidToFind").toString());
 %>
 
@@ -44,7 +45,7 @@
             </li>
             <%
             	// 判断是否查看本人资料
-              	User myUser = (User)request.getSession().getAttribute("u");
+              	
               	if(uidToFind == myUser.getUid()){
             %>
             <li class="menu-item-has-children active">
@@ -107,6 +108,17 @@
                     	权限等级
                 </dt>
                 <dd><%=user.getLevel()==1 ? "普通用户":"管理员" %></dd>
+                <%
+                	if(uidToFind == myUser.getUid()){
+                		session.setAttribute("error_msg", "");
+                %>
+                <dt> </dt>
+                <dd>
+                	<a href="userToUpdate.jsp"><button>修改资料</button></a>
+                </dd>
+                <%
+                	}
+                %>
             </dl>
         </div>
     </div>

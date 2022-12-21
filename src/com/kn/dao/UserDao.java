@@ -157,4 +157,23 @@ public class UserDao {
 			
 			return res;
 		}
+		
+		public void update(User user) throws ClassNotFoundException{
+			Connection conn = DBUtil.getConnection();
+			String sql = "update user set uname=?, email=?, pwd=?, intro=? where uid=?";
+			
+			try {
+				PreparedStatement prep = conn.prepareStatement(sql);
+				prep.setString(1, user.getUname());
+				prep.setString(2, user.getEmail());
+				prep.setString(3, user.getPwd());
+				prep.setString(4, user.getIntro());
+				prep.setInt(5, user.getUid());
+				
+				prep.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 }

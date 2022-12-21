@@ -59,6 +59,8 @@ public class UserServlet extends HttpServlet {
 			response.sendRedirect("login.info");
 			
 		}
+		
+		//查看个人资料
 		else if(path.equals("/details")){
 			Object obj = session.getAttribute("u");
 			if(obj == null){
@@ -81,6 +83,68 @@ public class UserServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
+		//更新个人资料
+		else if(path.equals("/update")){
+			Object obj = session.getAttribute("u");
+			if(obj == null){
+				//跳转回登录页面 
+				response.sendRedirect("login.jsp");
+				return;
+			}
+			
+			int uid = Integer.parseInt(request.getParameter("uid"));
+			String uname = request.getParameter("uname");
+			String email = request.getParameter("email");
+			String pwd = request.getParameter("pwd");
+			String intro = request.getParameter("intro");
+			
+			String error_msg = "";
+			
+			//判定昵称和密码是否合理
+			if(uname == null || uname.length()==0){
+				error_msg = "昵称不可为空";
+			}else if(pwd.length() < 6){
+				error_msg = "密码不得少于6位";
+			}else{
+				//判断邮箱是否合法
+				String regex = "[a-zA-Z0-9_]+@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9]+)+"; // (注：\为转义字符）
+				boolean flag = email.matches(regex);
+				if(!flag) {
+					error_msg = "邮箱格式错误";
+				}
+			}
+			
+
+			if(error_msg != ""){
+				session.setAttribute("error_msg", error_msg);
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("userToUpdate.jsp");
+				dispatcher.forward(request, response);
+			}else{
+				User user = new User();
+				user.setUid(uid);
+				user.setUname(uname);
+				user.setEmail(email);
+				user.setPwd(pwd);
+				user.setIntro(intro);
+				
+				try {
+					service.update(user);
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				//!!!记得及时修改session中的信息
+				session.setAttribute("u", user);
+				
+				//重定向
+				response.sendRedirect("details.info?uid="+uid);
+			}
+		}
+		
+		//查看个人追番清单
 		else if(path.equals("/favorList")){
 			Object obj = session.getAttribute("u");
 			if(obj == null){
@@ -104,6 +168,8 @@ public class UserServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("favorList.jsp");
 			dispatcher.forward(request, response);
 		}
+		
+		//取消追番
 		else if(path.equals("/favorDel")){
 			Object obj = session.getAttribute("u");
 			if(obj == null){
@@ -122,6 +188,8 @@ public class UserServlet extends HttpServlet {
 			}
 			response.sendRedirect("favorList.info");
 		}
+		
+		//新增追番
 		else if(path.equals("/favorAdd")){
 			Object obj = session.getAttribute("u");
 			if(obj == null){

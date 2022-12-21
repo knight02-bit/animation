@@ -32,4 +32,8 @@ public class UserService {
 	public boolean isFavor(int uid, int aid) throws ClassNotFoundException{
 		return dao.isFavor(uid, aid);
 	}
+	
+	public void update(User user) throws ClassNotFoundException{
+		dao.update(user);
+	}
 }
