@@ -206,3 +206,16 @@ https://www.kjava.com/
 ### 新用户注册
 
 使用邮箱验证码进行注册
+
+
+
+## 联系作者
+
+📪: tsjkhtfoxmail.com
+
+[泥烟の客栈](https://www.cnblogs.com/knight02)
+
+[凌海逆炎のbilibili](https://space.bilibili.com/398743455)
+
+[仓库已开源: animation: 番荒之冢 - - 番剧灯塔站 (gitee.com)](https://gitee.com/knight-02/animation)
+
