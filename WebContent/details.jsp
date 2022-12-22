@@ -102,13 +102,13 @@
                 </dt>
                 <dd>
                 	<%
-                		if(anim.getLink() != null){
+                		if(anim.getLink().length()==0 || anim.getLink() == null){
                 	%>
-                		<a href="<%=anim.getLink() %>">👉点击直达👈</a>
+                		<p>暂无, 欢迎在留言区咨询, <br/>或者提交修改意见</p>
                 	<%
                 		}else{
                 	%>
-                		<p>暂无, 欢迎在留言区咨询, <br/>或者提交修改意见</p>
+                		<a href="<%=anim.getLink() %>">👉点击直达👈</a>
                 	<%
                 		}
                 	%>
@@ -142,10 +142,12 @@
                 </dd>
                 <%
                		if(user.getLevel() == 2){
+               			session.setAttribute("anim0", anim);
+               			session.setAttribute("error_msg", "");
                	%>
                 <dt> </dt>
                 <dd>
-                	<a href=""><button width=4px>编辑信息 </button></a>
+                	<a href="animToUpdate.jsp"><button>编辑信息 </button></a>
                 </dd>
 				<%
                		}
@@ -156,7 +158,17 @@
 
     <div class="stylization agent-about">
         <h2 class="agent-about-ttl">About <b><%=anim.getAname() %></b></h2>
-        <%=anim.getContent() %>
+        <%
+        	if(anim.getContent().length() == 0 || anim.getContent() == null){
+        %>
+        	暂无介绍
+        <%
+        	}else{
+        %>
+        	<%=anim.getContent() %>
+        <%
+        	}
+        %>
     </div>
 </div>
 

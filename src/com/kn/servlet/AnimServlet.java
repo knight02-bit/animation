@@ -40,6 +40,7 @@ public class AnimServlet extends HttpServlet {
 		
 		AnimService service = new AnimService();
 		
+		//首页分页列表
 		if(path.equals("/list")){
 			List<Anim> anims = new ArrayList<Anim>();
 			
@@ -76,7 +77,10 @@ public class AnimServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if(path.equals("/details")){
+		}
+		
+		//查看番剧详情
+		else if(path.equals("/details")){
 			UserService userService = new UserService();
 			User user = (User)session.getAttribute("u");
 			int aid = Integer.parseInt(request.getParameter("aid"));
@@ -95,6 +99,63 @@ public class AnimServlet extends HttpServlet {
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
+		}
+		
+		//更新番剧信息
+		else if(path.equals("/update")){
+			int aid = Integer.parseInt(request.getParameter("aid"));
+			int state = Integer.parseInt(request.getParameter("state"));
+			int year = Integer.parseInt(request.getParameter("year"));
+			String aname = request.getParameter("aname");
+			String cover = request.getParameter("cover");
+			String link = request.getParameter("link");
+			String content = request.getParameter("content");
+			
+			String error_msg = "";
+			
+			if(aname == null || aname.length()==0){
+				error_msg = "番名不可为空";
+			}else{
+				//判断url格式是否合法
+				String regex = "[a-zA-z]+://[^\\s]*"; // (注：\为转义字符）
+				boolean flag = link.matches(regex);
+				
+				//若填就得合规
+				if(link.length() != 0 && !flag) {
+					error_msg = "播放链接格式错误";
+				}
+			}
+			
+			if(error_msg != ""){
+				session.setAttribute("error_msg", error_msg);
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("animToUpdate.jsp");
+				dispatcher.forward(request, response);
+				
+			}else{
+				Anim anim = new Anim();
+				anim.setAid(aid);
+				anim.setAname(aname);
+				anim.setState(state);
+				anim.setYear(year);
+				anim.setCover(cover);
+				anim.setLink(link);
+				anim.setContent(content);
+				
+				try {
+					service.update(anim);
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				//!!!记得及时修改session中的信息
+				session.setAttribute("anim0", anim);
+				
+				//重定向
+				response.sendRedirect("details.do?aid="+aid);
+			}
+
 		}
 	}
 

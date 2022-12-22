@@ -81,7 +81,7 @@
 	                <div class="testimonials-i-cont">
 	                    💡<p><%=comment.getContent() %></p>
 	                    <%
-	                    	if(comment.getUid() == user.getUid())
+	                    	if(user.getLevel() == 2 || comment.getUid() == user.getUid())
 	                    	{
 	                    %>
 	                    	<a href="del.chat?uid=<%=comment.getUid() %>&&time=<%=comment.getTime() %>">✖删除</a>
