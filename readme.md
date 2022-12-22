@@ -4,6 +4,10 @@
 
 *一番桃李花开尽，惟有青青草色齐。——曾巩《城南》*
 
+
+
+
+
 ## 理念
 
 前端追求简洁风格
@@ -51,6 +55,8 @@
 
 默认封面![pic404](readme.assets/pic404.png)
 
+
+
 ### 用户/管理员信息
 
 |              用户              |                                       |
@@ -86,6 +92,96 @@
 |        UID         |      |
 | 发送时间(自动获取) |      |
 |        内容        |      |
+
+
+
+## 数据库设计
+
+### user
+
+```sql
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `uid` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `pwd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `uname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `level` int NOT NULL DEFAULT '2',
+  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'static/picture/user0.jpg',
+  `intro` text,
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
+
+
+
+### animation
+
+```sql
+-- ----------------------------
+-- Table structure for animation
+-- ----------------------------
+DROP TABLE IF EXISTS `animation`;
+CREATE TABLE `animation` (
+  `aid` int NOT NULL AUTO_INCREMENT,
+  `aname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `state` int DEFAULT NULL,
+  `year` int DEFAULT NULL,
+  `cover` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'static/picture/pic404.png',
+  `link` varchar(255) DEFAULT NULL,
+  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  PRIMARY KEY (`aname`),
+  UNIQUE KEY `aid` (`aid`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
+
+### comment
+
+```sql
+-- ----------------------------
+-- Table structure for comment
+-- ----------------------------
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE `comment` (
+  `uid` int NOT NULL,
+  `time` datetime NOT NULL,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  PRIMARY KEY (`uid`,`time`),
+  CONSTRAINT `user-comment` FOREIGN KEY (`uid`) REFERENCES `user` (`uid`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
+
+### favoranim
+
+```sql
+-- ----------------------------
+-- Table structure for favoranim
+-- ----------------------------
+DROP TABLE IF EXISTS `favoranim`;
+CREATE TABLE `favoranim` (
+  `uid` int NOT NULL,
+  `aid` int NOT NULL,
+  PRIMARY KEY (`uid`,`aid`),
+  KEY `favor-anim` (`aid`),
+  CONSTRAINT `favor-anim` FOREIGN KEY (`aid`) REFERENCES `animation` (`aid`) ON DELETE CASCADE,
+  CONSTRAINT `favor-user` FOREIGN KEY (`uid`) REFERENCES `user` (`uid`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
+
+
+
+## 技术栈(无框架)
+
+HTML CSS JSP
+
+JAVA
+
+MYSQL
+
+TOMCAT
 
 
 
@@ -177,7 +273,7 @@
 
 
 
-## 待补充功能(与其它功能同理,不再维护)
+## 待补充功能
 
 ### 分页过多
 
@@ -195,7 +291,7 @@
 
 使用图库的api接口
 
-```
+```python
 https://img.ski/page/api-docs.html
 https://imgse.com/page/plugin
 https://www.kjava.com/
@@ -206,6 +302,10 @@ https://www.kjava.com/
 ### 新用户注册
 
 使用邮箱验证码进行注册
+
+
+
+### ...
 
 
 
