@@ -62,38 +62,39 @@
     </nav>
 </header>
 
-<div class="container maincont">
-	<%
-		List<Anim> favorAnims = (List<Anim>)request.getAttribute("favorAnims");
-	%>
+	<div class="container maincont">
+		<%
+			List<Anim> favorAnims = (List<Anim>)request.getAttribute("favorAnims");
+		%>
+	
+	    <div class="mainttl-wrap">
+	        <h1 class="mainttl"><span>你有 <%=favorAnims.size() %> 部番在追</span></h1>
+	    </div>
+	    
+	    <div class="row agents-list">
+		    <%
+		    	
+		    	for(Anim anim : favorAnims)
+		    	{
+		    %>
+	    	<div class="cf-xs-6 cf-sm-6 cf-lg-4 col-xs-6 col-sm-6 col-md-4 agent-i-col">
+	            <div class="agent-i">
+	                <a href="details.do?aid=<%=anim.getAid() %>" class="agent-i-img">
+	                    <img src="<%=anim.getCover() %>" alt="">
+	                </a>
+	
+	                <h3 class="agent-i-ttl">
+	                    <a href="details.do?aid=<%=anim.getAid() %>"><%=anim.getAname() %></a>
+	                </h3>
+	                <a href="favorDel.info?uid=<%=user.getUid() %>&&aid=<%=anim.getAid() %>" class="modalform-btn agent-i-call">取消追番</a>
+	            </div>
+	        </div>
+	        <%
+		    	}
+	        %>
+	    </div>
+	</div>
 
-    <div class="mainttl-wrap">
-        <h1 class="mainttl"><span>你有 <%=favorAnims.size() %> 部番在追</span></h1>
-    </div>
-    
-    <div class="row agents-list">
-	    <%
-	    	
-	    	for(Anim anim : favorAnims)
-	    	{
-	    %>
-    	<div class="cf-xs-6 cf-sm-6 cf-lg-4 col-xs-6 col-sm-6 col-md-4 agent-i-col">
-            <div class="agent-i">
-                <a href="details.do?aid=<%=anim.getAid() %>" class="agent-i-img">
-                    <img src="<%=anim.getCover() %>" alt="">
-                </a>
-
-                <h3 class="agent-i-ttl">
-                    <a href="details.do?aid=<%=anim.getAid() %>"><%=anim.getAname() %></a>
-                </h3>
-                <a href="favorDel.info?uid=<%=user.getUid() %>&&aid=<%=anim.getAid() %>" class="modalform-btn agent-i-call">取消追番</a>
-            </div>
-        </div>
-        <%
-	    	}
-        %>
-    </div>
-    <!-- 追番清单分页 -->
-</div>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

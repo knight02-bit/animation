@@ -61,67 +61,67 @@
     </nav>
 </header>
 
-<div class="container maincont">
-    <div class="stylization agent-about">
-        <form action="update.info" method="post">
-            <table>
-            	<%
-            		String error_msg = session.getAttribute("error_msg").toString();
-            	%>
-                <tr>✍🏼个人资料修改
-                	<span style="color:red"><%=error_msg %></span>
-                </tr>
-                <tr>
-                    <td valign="middle" align="right">
-                        UID 
-                    </td>
-                    <td valign="middle" align="left">
-                    	<%=user.getUid() %>
-                    	<input type="hidden" name="uid" value="<%=user.getUid() %>"/>
-                	</td>
-                </tr>
-                <tr>
-                    <td valign="middle" align="right">
-                        昵称
-                    </td>
-                    <td valign="middle" align="left">
-                        <input type="text" name="uname" value="<%=user.getUname() %>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td valign="middle" align="right">
-                        邮箱
-                    </td>
-                    <td valign="middle" align="left">
-                        <input type="text" name="email" value="<%=user.getEmail() %>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td valign="middle" align="right">
-                        密码(不得少于6位)
-                    </td>
-                    <td valign="middle" align="left">
-                        <input type="text" name="pwd" value="<%=user.getPwd() %>"/>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td valign="middle" align="right">
-                        个人简介
-                    </td>
-                    <td valign="middle" align="left">
-                        <textarea name="intro" id="intro" placeholder="留下你的介绍吧少侠"><%=user.getIntro() %></textarea>
-                    </td>
-                </tr>
-                
-            </table>
-            <p>
-                <input type="submit" class="button" value="提交" />
-            </p>
-        </form>
-        <a href="details.info?uid=<%=user.getUid() %>"><button>取消修改</button></a>
-    </div>
-</div>
-
+	<div class="container maincont">
+	    <div class="stylization agent-about">
+	        <form action="update.info" method="post">
+	            <table>
+	            	<%
+	            		String error_msg = session.getAttribute("error_msg").toString();
+	            	%>
+	                <tr>✍🏼个人资料修改
+	                	<span style="color:red"><%=error_msg %></span>
+	                </tr>
+	                <tr>
+	                    <td valign="middle" align="right">
+	                        UID 
+	                    </td>
+	                    <td valign="middle" align="left">
+	                    	<%=user.getUid() %>
+	                    	<input type="hidden" name="uid" value="<%=user.getUid() %>"/>
+	                	</td>
+	                </tr>
+	                <tr>
+	                    <td valign="middle" align="right">
+	                        昵称
+	                    </td>
+	                    <td valign="middle" align="left">
+	                        <input type="text" name="uname" value="<%=user.getUname() %>"/>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td valign="middle" align="right">
+	                        邮箱
+	                    </td>
+	                    <td valign="middle" align="left">
+	                        <input type="text" name="email" value="<%=user.getEmail() %>"/>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td valign="middle" align="right">
+	                        密码(不得少于6位)
+	                    </td>
+	                    <td valign="middle" align="left">
+	                        <input type="text" name="pwd" value="<%=user.getPwd() %>"/>
+	                    </td>
+	                </tr>
+	                
+	                <tr>
+	                    <td valign="middle" align="right">
+	                        个人简介
+	                    </td>
+	                    <td valign="middle" align="left">
+	                        <textarea name="intro" id="intro" placeholder="留下你的介绍吧少侠"><%=user.getIntro() %></textarea>
+	                    </td>
+	                </tr>
+	                
+	            </table>
+	            <p>
+	                <input type="submit" class="button" value="提交" />
+	            </p>
+	        </form>
+	        <a href="details.info?uid=<%=user.getUid() %>"><button>取消修改</button></a>
+	    </div>
+	</div>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

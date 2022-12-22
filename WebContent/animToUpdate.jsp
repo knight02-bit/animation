@@ -61,123 +61,124 @@
     </nav>
 </header>
 
-<div class="container maincont">
-    <div class="stylization agent-about">
-        <form action="update.do" method="post">
-            <table>
-            	<%
-            		Anim anim = (Anim)request.getSession().getAttribute("anim0");
-            		String error_msg = session.getAttribute("error_msg").toString();
-            	%>
-                <tr>✍🏼番剧资料修改
-                	<span style="color:red"><%=error_msg %> </span>
-                </tr>
-                <tr>
-                    <td valign="middle" align="right">
-                        AID 
-                    </td>
-                    <td valign="middle" align="left">
-                    	<%=anim.getAid() %>
-                    	<input type="hidden" name="aid" value="<%=anim.getAid() %>"/>
-                	</td>
-                </tr>
-                <tr>
-                    <td valign="middle" align="right">
-                        番名
-                    </td>
-                    <td valign="middle" align="left">
-                        <input type="text" name="aname" value="<%=anim.getAname() %>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td valign="middle" align="right">
-                        上映年份
-                    </td>
-                    <td valign="middle" align="left">
-                    	<select name="year">
-	                    <%
-	                    	//获取今年的年份
-	                    	Calendar calendar = Calendar.getInstance();
-	                    	int current_year = calendar.get(Calendar.YEAR);
-	                    	int year = anim.getYear();
-	                    	
-	                    %>
-	                    	<option value="<%=year %>"><%=year %></option>
-	                    <%
-	                    	for(int i = current_year; i >= 1950; --i){
-	                    		if(i != year){
-	                    %>
-	                    	<option value="<%=i %>"><%=i %></option>
-	                    <%
-	                    		}
-	                    	}
-	                    %>
-                        </select>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td valign="middle" align="right">
-                        状态
-                    </td>
-                    <td valign="middle" align="left">
-                        <select name="state">
-                        <%
-                        	if(anim.getState() == 1){
-                        %>
-							<option value="1">连载中</option>
-							<option value="2">已完结</option>
-							
-						<%
-                        	}else{
-						%>
-							<option value="2">已完结</option>
-							<option value="1">连载中</option>
-						<%
-                        	}
-						%>
-						</select>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td valign="middle" align="right">
-                        封面外链(可为空)
-                    </td>
-                    <td valign="middle" align="left">
-                        <input type="text" name="cover" value="<%=anim.getCover() %>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td valign="middle" align="right">
-                        播放外链(可为空)
-                    </td>
-                    <td valign="middle" align="left">
-                        <input type="text" name="link" value="<%=anim.getLink() %>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td valign="middle" align="right">
-                        简介
-                    </td>
-                    <td valign="middle" align="left">
-                        <textarea name="content" id="content" placeholder="向大伙推荐一下精彩之处吧!"><%=anim.getContent() %></textarea>
-                    </td>
-                </tr>
-                
-            </table>
-            <p>
-                <input type="submit" class="button" value="提交" />
-                
-            </p>
-        </form>
-        <tr>
-        	<td><a href="details.do?aid=<%=anim.getAid() %>"><button>取消修改</button></a></td>
-        	<td><a href="animDel.do?aid=<%=anim.getAid() %>"><button>删除该番 </button></a></td>
-        </tr>
-
-    </div>
-</div>
-
+	<div class="container maincont">
+	    <div class="stylization agent-about">
+	        <form action="update.do" method="post">
+	            <table>
+	            	<%
+	            		Anim anim = (Anim)request.getSession().getAttribute("anim0");
+	            		String error_msg = session.getAttribute("error_msg").toString();
+	            	%>
+	                <tr>✍🏼番剧资料修改
+	                	<span style="color:red"><%=error_msg %> </span>
+	                </tr>
+	                <tr>
+	                    <td valign="middle" align="right">
+	                        AID 
+	                    </td>
+	                    <td valign="middle" align="left">
+	                    	<%=anim.getAid() %>
+	                    	<input type="hidden" name="aid" value="<%=anim.getAid() %>"/>
+	                	</td>
+	                </tr>
+	                <tr>
+	                    <td valign="middle" align="right">
+	                        番名
+	                    </td>
+	                    <td valign="middle" align="left">
+	                        <input type="text" name="aname" value="<%=anim.getAname() %>"/>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td valign="middle" align="right">
+	                        上映年份
+	                    </td>
+	                    <td valign="middle" align="left">
+	                    	<select name="year">
+		                    <%
+		                    	//获取今年的年份
+		                    	Calendar calendar = Calendar.getInstance();
+		                    	int current_year = calendar.get(Calendar.YEAR);
+		                    	int year = anim.getYear();
+		                    	
+		                    %>
+		                    	<option value="<%=year %>"><%=year %></option>
+		                    <%
+		                    	for(int i = current_year; i >= 1950; --i){
+		                    		if(i != year){
+		                    %>
+		                    	<option value="<%=i %>"><%=i %></option>
+		                    <%
+		                    		}
+		                    	}
+		                    %>
+	                        </select>
+	                    </td>
+	                </tr>
+	                
+	                <tr>
+	                    <td valign="middle" align="right">
+	                        状态
+	                    </td>
+	                    <td valign="middle" align="left">
+	                        <select name="state">
+	                        <%
+	                        	if(anim.getState() == 1){
+	                        %>
+								<option value="1">连载中</option>
+								<option value="2">已完结</option>
+								
+							<%
+	                        	}else{
+							%>
+								<option value="2">已完结</option>
+								<option value="1">连载中</option>
+							<%
+	                        	}
+							%>
+							</select>
+	                    </td>
+	                </tr>
+	                
+	                <tr>
+	                    <td valign="middle" align="right">
+	                        封面外链(可为空)
+	                    </td>
+	                    <td valign="middle" align="left">
+	                        <input type="text" name="cover" value="<%=anim.getCover() %>"/>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td valign="middle" align="right">
+	                        播放外链(可为空)
+	                    </td>
+	                    <td valign="middle" align="left">
+	                        <input type="text" name="link" value="<%=anim.getLink() %>"/>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td valign="middle" align="right">
+	                        简介
+	                    </td>
+	                    <td valign="middle" align="left">
+	                        <textarea name="content" id="content" placeholder="向大伙推荐一下精彩之处吧!"><%=anim.getContent() %></textarea>
+	                    </td>
+	                </tr>
+	                
+	            </table>
+	            <p>
+	                <input type="submit" class="button" value="提交" />
+	                
+	            </p>
+	        </form>
+	        <tr>
+	        	<td><a href="details.do?aid=<%=anim.getAid() %>"><button>取消修改</button></a></td>
+	        	<td><a href="animDel.do?aid=<%=anim.getAid() %>"><button>删除该番 </button></a></td>
+	        </tr>
+	
+	    </div>
+	
+	</div>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

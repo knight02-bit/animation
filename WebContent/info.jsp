@@ -81,65 +81,64 @@
     </nav>
 </header>
 
-
-<div class="container maincont">
-		
-		<%
-			User user = (User)request.getAttribute("user");
-		%>
-		
-        <div class="agent-detail">
-        <p class="agent-detail-img" style="background-image: url(<%=user.getAvatar() %>);">
-            <img src="<%=user.getAvatar() %>" alt="">
-        </p>
-        <div class="agent-detail-cont">
-            <h1 class="agent-detail-ttl"><%=user.getUname() %></h1>
-
-            <dl class="agent-detail-info">
-
-                <dt>
-                    <span class="agent-detail-info-icon"><img src="static/picture/h-ico-2.png" alt=""></span>
-                    Email
-                </dt>
-                <dd><%=user.getEmail() %></dd>
-                <dt>
-                    <span class="agent-detail-info-icon"><img src="static/picture/ico-user.png" alt=""></span>
-                    	权限等级
-                </dt>
-                <dd><%=user.getLevel()==1 ? "普通用户":"管理员" %></dd>
-                <%
-                	if(uidToFind == myUser.getUid()){
-                		session.setAttribute("error_msg", "");
-                %>
-                <dt> </dt>
-                <dd>
-                	<a href="userToUpdate.jsp"><button>修改资料</button></a>
-                </dd>
-                <%
-                	}
-                %>
-            </dl>
-        </div>
-    </div>
-
-    <div class="stylization agent-about">
-        <h2 class="agent-about-ttl">关于 <b><%=user.getUname() %></b></h2>
-        <p>
-        <%
-        	if(user.getIntro() == null || user.getIntro().length()==0){
-        %>
-       		这个人很懒,还未留个人介绍
-        <%
-        	}else{
-        %>
-        	<%=user.getIntro() %> 
-        <%
-        	}
-        %>
-        
-        </p>
-    </div>
-</div>
-
+	<div class="container maincont">
+			
+			<%
+				User user = (User)request.getAttribute("user");
+			%>
+			
+	        <div class="agent-detail">
+	        <p class="agent-detail-img" style="background-image: url(<%=user.getAvatar() %>);">
+	            <img src="<%=user.getAvatar() %>" alt="">
+	        </p>
+	        <div class="agent-detail-cont">
+	            <h1 class="agent-detail-ttl"><%=user.getUname() %></h1>
+	
+	            <dl class="agent-detail-info">
+	
+	                <dt>
+	                    <span class="agent-detail-info-icon"><img src="static/picture/h-ico-2.png" alt=""></span>
+	                    Email
+	                </dt>
+	                <dd><%=user.getEmail() %></dd>
+	                <dt>
+	                    <span class="agent-detail-info-icon"><img src="static/picture/ico-user.png" alt=""></span>
+	                    	权限等级
+	                </dt>
+	                <dd><%=user.getLevel()==1 ? "普通用户":"管理员" %></dd>
+	                <%
+	                	if(uidToFind == myUser.getUid()){
+	                		session.setAttribute("error_msg", "");
+	                %>
+	                <dt> </dt>
+	                <dd>
+	                	<a href="userToUpdate.jsp"><button>修改资料</button></a>
+	                </dd>
+	                <%
+	                	}
+	                %>
+	            </dl>
+	        </div>
+	    </div>
+	
+	    <div class="stylization agent-about">
+	        <h2 class="agent-about-ttl">关于 <b><%=user.getUname() %></b></h2>
+	        <p>
+	        <%
+	        	if(user.getIntro() == null || user.getIntro().length()==0){
+	        %>
+	       		这个人很懒,还未留个人介绍
+	        <%
+	        	}else{
+	        %>
+	        	<%=user.getIntro() %> 
+	        <%
+	        	}
+	        %>
+	        
+	        </p>
+	    </div>
+	</div>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

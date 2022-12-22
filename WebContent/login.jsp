@@ -15,35 +15,34 @@
 		<div class="login-form">
 			<h1>用户登录</h1>
 				<form action="login.info" method="post">
-						<tr>
-							<td><span>邮箱:</span></td>
-							<td>
-								<span style="color:red">
-										<%=request.getAttribute("umsg")==null?"":request.getAttribute("umsg") %>
-								</span>
-							</td>
-							<td>
-								<input type="text" class="text" name="email"/>
-							</td>
-						</tr>
-						<tr>
-							<td><span>密码:</span></td>
-							<td>
-								<span style="color:red">
-										<%=request.getAttribute("pmsg")==null?"":request.getAttribute("pmsg") %>
-								</span>
-							</td>
-							
-							<td>
-								<input type="password" class="text" name="pwd" />
-							</td>
-						</tr>
-						<div class="submit">
-							<input type="submit" value="登录" >
-						</div>
+					<tr>
+						<td><span>邮箱:</span></td>
+						<td>
+							<span style="color:red">
+									<%=request.getAttribute("umsg")==null?"":request.getAttribute("umsg") %>
+							</span>
+						</td>
+						<td>
+							<input type="text" class="text" name="email"/>
+						</td>
+					</tr>
+					<tr>
+						<td><span>密码:</span></td>
+						<td>
+							<span style="color:red">
+									<%=request.getAttribute("pmsg")==null?"":request.getAttribute("pmsg") %>
+							</span>
+						</td>
+						
+						<td>
+							<input type="password" class="text" name="pwd" />
+						</td>
+					</tr>
+					<div class="submit">
+						<input type="submit" value="登录" >
+					</div>
 				</form>
 			</div>
-   			<!-- <div class="copy-right"></div> -->
-		</div>	 		
+		</div>		
 </body>
 </html>

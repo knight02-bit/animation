@@ -62,46 +62,48 @@
     </nav>
 </header>
 
-<div class="container maincont stylization">
-	<form action="add.chat" method="post">
-        <div >
-            <textarea name="message" id="message" placeholder="发送一条友善的留言" font-size="20px" cols="30" rows="5"></textarea>
-        </div>
-        <button type="submit" >发送留言</button>
-    </form>
-    <div class="cont-boxed">
-        <div class="testimonials-list style-1">
-        	
-        	<%
-				List<Comment> comments = (ArrayList)request.getAttribute("comments");
-				for(Comment comment : comments)
-				{
-			%>
-				<div class="testimonials-i">
-	                <div class="testimonials-i-cont">
-	                    💡<p><%=comment.getContent() %></p>
-	                    <%
-	                    	if(user.getLevel() == 2 || comment.getUid() == user.getUid())
-	                    	{
-	                    %>
-	                    	<a href="del.chat?uid=<%=comment.getUid() %>&&time=<%=comment.getTime() %>">✖删除</a>
-	                    <%
-	                    	}
-	                    %>
-	                </div>
-	                <p class="testimonials-i-img">
-	                    <a href="details.info?uid=<%=comment.getUid() %>"><img src="<%=comment.getAvatar() %>" alt=""></a> 
-	                </p>
-	                <div class="testimonials-i-info">
-	                    <h3><a href="details.info?uid=<%=comment.getUid() %>"><%=comment.getUname() %></a> </h3>
-	                    <p class="testimonials-i-position"> <%=comment.getTime() %> </p>
-	                </div>
-	            </div>
-			<%
-				}
-			%>
-        </div>
-    </div>
-</div>
+	<div class="container maincont stylization">
+		<form action="add.chat" method="post">
+	        <div >
+	            <textarea name="message" id="message" placeholder="发送一条友善的留言" font-size="20px" cols="30" rows="5"></textarea>
+	        </div>
+	        <button type="submit" >发送留言</button>
+	    </form>
+	    <div class="cont-boxed">
+	        <div class="testimonials-list style-1">
+	        	
+	        	<%
+					List<Comment> comments = (ArrayList)request.getAttribute("comments");
+					for(Comment comment : comments)
+					{
+				%>
+					<div class="testimonials-i">
+		                <div class="testimonials-i-cont">
+		                    💡<p><%=comment.getContent() %></p>
+		                    <%
+		                    	if(user.getLevel() == 2 || comment.getUid() == user.getUid())
+		                    	{
+		                    %>
+		                    	<a href="del.chat?uid=<%=comment.getUid() %>&&time=<%=comment.getTime() %>">✖删除</a>
+		                    <%
+		                    	}
+		                    %>
+		                </div>
+		                <p class="testimonials-i-img">
+		                    <a href="details.info?uid=<%=comment.getUid() %>"><img src="<%=comment.getAvatar() %>" alt=""></a> 
+		                </p>
+		                <div class="testimonials-i-info">
+		                    <h3><a href="details.info?uid=<%=comment.getUid() %>"><%=comment.getUname() %></a> </h3>
+		                    <p class="testimonials-i-position"> <%=comment.getTime() %> </p>
+		                </div>
+		            </div>
+				<%
+					}
+				%>
+	        </div>
+	    </div>
+	</div>
+	
+	<jsp:include page="footer.jsp"/>
 </body>
 </html>

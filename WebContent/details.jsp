@@ -61,116 +61,115 @@
     </nav>
 </header>
 
-
-<div class="container maincont">
-	<%
-		Anim anim = (Anim)request.getAttribute("anim");
-		int favorNum = Integer.parseInt(request.getAttribute("num").toString());
-	%>
-    <div class="agent-detail">
-      
-        <div class="agent-detail-cont">
-        	<p class="agent-detail-img" style="background-image: url(<%=anim.getCover() %>);">
-            	<img src="<%=anim.getCover() %>" alt="">
-        	</p>
-            <h1 class="agent-detail-ttl"><%=anim.getAname() %></h1>
-            <dl class="agent-detail-info">
-                <dt>
-                    上映时间
-                </dt>
-                <dd><%=anim.getYear() %></dd>
-                <dt>
-                    状态
-                </dt>
-                <dd>
-                	<%
-                		if(anim.getState() == 1){
-                	%>
-                		连载中
-                	<%
-                		}else{
-                	%>
-                		已完结
-                	<%
-                		}
-                	%>
-                </dd>
-                
-                <dt>
-                    <span class="agent-detail-info-icon"><img src="static/picture/h-ico-1.png" alt=""></span>
-                    有效链接
-                </dt>
-                <dd>
-                	<%
-                		if(anim.getLink() == null || anim.getLink().length()==0){
-                	%>
-                		<p>暂无, 欢迎在留言区咨询, <br/>或者提交修改意见</p>
-                	<%
-                		}else{
-                	%>
-                		<a href="<%=anim.getLink() %>">👉点击直达👈</a>
-                	<%
-                		}
-                	%>
-                	
-                </dd>
-
-                <dt>
-                    <span class="agent-detail-info-icon"><img src="static/picture/ico-user.png" alt=""></span>
-                    追番人数
-                </dt>
-                <dd><%=favorNum %></dd>
-                <dt> </dt>
-                
-                <dd>
-                	
-                	<%
-                		int isFavor = Integer.parseInt(request.getAttribute("isFavor").toString());
-                		if(isFavor == 0){
-                	%>
-	                	<a href="favorAdd.info?uid=<%=user.getUid() %>&&aid=<%=anim.getAid() %>">
-	                		<button>俺也要追!</button>
-	                	</a>
-                	<%
-                		}else{
-                	%>
-                		<span style="color:red">(已追番)</span>
-                	<%
-                		}
-                	%>
-                	
-                </dd>
-                <%
-               		if(user.getLevel() == 2){
-               			session.setAttribute("anim0", anim);
-               			session.setAttribute("error_msg", "");
-               	%>
-                <dt> </dt>
-                <dd>
-                	<a href="animToUpdate.jsp"><button>编辑信息 </button></a>
-                </dd>
-				<%
-               		}
-               	%>
-            </dl>
-        </div>
-    </div>
-
-    <div class="stylization agent-about">
-        <h2 class="agent-about-ttl">About <b><%=anim.getAname() %></b></h2>
-        <%
-        	if(anim.getContent() == null || anim.getContent().length() == 0){
-        %>
-        	暂无介绍
-        <%
-        	}else{
-        %>
-        	<%=anim.getContent() %>
-        <%
-        	}
-        %>
-    </div>
-</div>
-
+	<div class="container maincont">
+		<%
+			Anim anim = (Anim)request.getAttribute("anim");
+			int favorNum = Integer.parseInt(request.getAttribute("num").toString());
+		%>
+	    <div class="agent-detail">
+	      
+	        <div class="agent-detail-cont">
+	        	<p class="agent-detail-img" style="background-image: url(<%=anim.getCover() %>);">
+	            	<img src="<%=anim.getCover() %>" alt="">
+	        	</p>
+	            <h1 class="agent-detail-ttl"><%=anim.getAname() %></h1>
+	            <dl class="agent-detail-info">
+	                <dt>
+	                    上映时间
+	                </dt>
+	                <dd><%=anim.getYear() %></dd>
+	                <dt>
+	                    状态
+	                </dt>
+	                <dd>
+	                	<%
+	                		if(anim.getState() == 1){
+	                	%>
+	                		连载中
+	                	<%
+	                		}else{
+	                	%>
+	                		已完结
+	                	<%
+	                		}
+	                	%>
+	                </dd>
+	                
+	                <dt>
+	                    <span class="agent-detail-info-icon"><img src="static/picture/h-ico-1.png" alt=""></span>
+	                    有效链接
+	                </dt>
+	                <dd>
+	                	<%
+	                		if(anim.getLink() == null || anim.getLink().length()==0){
+	                	%>
+	                		<p>暂无, 欢迎在留言区咨询, <br/>或者提交修改意见</p>
+	                	<%
+	                		}else{
+	                	%>
+	                		<a href="<%=anim.getLink() %>">👉点击直达👈</a>
+	                	<%
+	                		}
+	                	%>
+	                	
+	                </dd>
+	
+	                <dt>
+	                    <span class="agent-detail-info-icon"><img src="static/picture/ico-user.png" alt=""></span>
+	                    追番人数
+	                </dt>
+	                <dd><%=favorNum %></dd>
+	                <dt> </dt>
+	                
+	                <dd>
+	                	
+	                	<%
+	                		int isFavor = Integer.parseInt(request.getAttribute("isFavor").toString());
+	                		if(isFavor == 0){
+	                	%>
+		                	<a href="favorAdd.info?uid=<%=user.getUid() %>&&aid=<%=anim.getAid() %>">
+		                		<button>俺也要追!</button>
+		                	</a>
+	                	<%
+	                		}else{
+	                	%>
+	                		<span style="color:red">(已追番)</span>
+	                	<%
+	                		}
+	                	%>
+	                	
+	                </dd>
+	                <%
+	               		if(user.getLevel() == 2){
+	               			session.setAttribute("anim0", anim);
+	               			session.setAttribute("error_msg", "");
+	               	%>
+	                <dt> </dt>
+	                <dd>
+	                	<a href="animToUpdate.jsp"><button>编辑信息 </button></a>
+	                </dd>
+					<%
+	               		}
+	               	%>
+	            </dl>
+	        </div>
+	    </div>
+	
+	    <div class="stylization agent-about">
+	        <h2 class="agent-about-ttl">About <b><%=anim.getAname() %></b></h2>
+	        <%
+	        	if(anim.getContent() == null || anim.getContent().length() == 0){
+	        %>
+	        	暂无介绍
+	        <%
+	        	}else{
+	        %>
+	        	<%=anim.getContent() %>
+	        <%
+	        	}
+	        %>
+	    </div>
+	</div>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>
