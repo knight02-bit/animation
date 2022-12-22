@@ -61,7 +61,7 @@ public class AnimDao {
 		}
 	}
 	
-	public void delete(int aid) throws ClassNotFoundException{
+	public void deleteByAid(int aid) throws ClassNotFoundException{
 		Connection conn = DBUtil.getConnection();
 		String sql = "delete from animation where aid=?";
 
@@ -117,34 +117,6 @@ public class AnimDao {
 			e.printStackTrace();
 		}
 		return anim;
-	}
-	
-	public List<Anim> findByAname(String aname) throws ClassNotFoundException{
-		List<Anim> anims = new ArrayList<>();
-		Connection conn = DBUtil.getConnection();
-		String sql = "select * from animation where aname like ?";
-		
-		try{
-			PreparedStatement prep = conn.prepareStatement(sql);
-			String pattern = "%" + aname + "%";
-			prep.setString(1, pattern);
-			ResultSet resultSet = prep.executeQuery();
-			while(resultSet.next()){
-				Anim anim = new Anim();
-				anim.setAid(resultSet.getInt("aid"));
-				anim.setAname(resultSet.getString("aname"));
-				anim.setState(resultSet.getInt("state"));
-				anim.setYear(resultSet.getInt("year"));
-				anim.setCover(resultSet.getString("cover"));
-				anim.setLink(resultSet.getString("link"));
-				anim.setContent(resultSet.getString("content"));
-				
-				anims.add(anim);
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return anims;
 	}
 	
 	public List<Anim> findByPage(AnimPage animPage) throws ClassNotFoundException{

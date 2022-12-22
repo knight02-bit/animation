@@ -102,7 +102,7 @@
                 </dt>
                 <dd>
                 	<%
-                		if(anim.getLink().length()==0 || anim.getLink() == null){
+                		if(anim.getLink() == null || anim.getLink().length()==0){
                 	%>
                 		<p>暂无, 欢迎在留言区咨询, <br/>或者提交修改意见</p>
                 	<%
@@ -159,7 +159,7 @@
     <div class="stylization agent-about">
         <h2 class="agent-about-ttl">About <b><%=anim.getAname() %></b></h2>
         <%
-        	if(anim.getContent().length() == 0 || anim.getContent() == null){
+        	if(anim.getContent() == null || anim.getContent().length() == 0){
         %>
         	暂无介绍
         <%

@@ -18,8 +18,8 @@ public class AnimService {
 		dao.add(anim);
 	}
 	
-	public void delete(int aid) throws ClassNotFoundException {
-		dao.delete(aid);
+	public void deleteByAid(int aid) throws ClassNotFoundException {
+		dao.deleteByAid(aid);
 	}
 	
 	public void update(Anim anim) throws ClassNotFoundException{
@@ -30,10 +30,6 @@ public class AnimService {
 		Anim anim = dao.findByAid(aid);
 		return anim;
 	}
-	
-//	public List<Anim> findByAname(String aname) throws ClassNotFoundException{
-//		return dao.findByAname(aname);
-//	}
 	
 	public List<Anim> findByPage(AnimPage animPage) throws ClassNotFoundException{
 		return dao.findByPage(animPage);

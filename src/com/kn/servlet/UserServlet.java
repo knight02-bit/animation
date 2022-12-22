@@ -48,6 +48,7 @@ public class UserServlet extends HttpServlet {
 					return;
 				}
 				session.setAttribute("u", user);
+				//session.setAttribute("error_msg", "");
 				response.sendRedirect("list.do");
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block

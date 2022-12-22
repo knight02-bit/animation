@@ -80,42 +80,25 @@
         -->
         <div class="cont-withsb">
             <div class="cont-sb-lt">
+            	<%
+                	if(user.getLevel()==2){
+                		session.setAttribute("error_msg", "");
+                %>
+                	<div class="widget widget-searchform">
+                		<form action="animAdd.jsp" class="post">
+                    		<input class="btn1" type="submit" value="新增番剧">
+		                </form>
+                    </div>
+                <%
+                	}
+                %>
+            
                 <div class="widget widget-search">
                     <h3 class="widget-ttl"><b>搜索</b> </h3>
                     <form action="list.do" method="post">
                         <input name="aname" type="text" placeholder="输入番名或者关键字">
                         <button><img src="static/picture/ico-search.png" alt=""></button>
                     </form>
-                </div>
-                <div class="widget widget-categories">
-                    <h3 class="widget-ttl">💠分类</h3>
-                    <ul>
-                        <li><a href="">所有 </a></li>
-                        <li><b>🔴类型</b></li>
-                        <td>
-                            <tr><a href="">热血 </a></tr>
-                            <tr><a href="">恋爱 </a></tr>
-                            <tr><a href="">搞笑 </a></tr>
-                            <tr><a href="">励志 </a></tr>
-                            <tr><a href="">战斗 </a></tr>
-                            <tr><a href="">校园 </a></tr>
-                            <tr><a href="">青春 </a></tr>
-                        </strong>
-                        </td>
-                        <li><b>🟡年份</b> </li>
-                        <td>
-                            <tr><a href="">2022 </a></tr>
-                            <tr><a href="">2021 </a></tr>
-                            <tr><a href="">...(后续用jsp循环) </a></tr>
-                            <tr><a href="">2000以前 </a></tr>
-                        </td>
-                        <li><b>🟢状态</b> </li>
-                        <td>
-                            <tr><a href="">连载中 </a></tr>
-                            <tr><a href="">已完结 </a></tr>
-                            <!-- <tr><a href="">未上映 </a></tr> -->
-                        </td>
-                    </ul>
                 </div>
                 
                 <div class="widget widget-comments">
@@ -139,6 +122,7 @@
                 </div>
             </div>
             <div class="cont-content">
+            	
                 <div class="row post-grid" align="center">
                 	
                 	<%

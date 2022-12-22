@@ -45,7 +45,6 @@
             </li>
             <%
             	// 判断是否查看本人资料
-              	
               	if(uidToFind == myUser.getUid()){
             %>
             <li class="menu-item-has-children active">
@@ -127,7 +126,7 @@
         <h2 class="agent-about-ttl">关于 <b><%=user.getUname() %></b></h2>
         <p>
         <%
-        	if(user.getIntro() == null){
+        	if(user.getIntro() == null || user.getIntro().length()==0){
         %>
        		这个人很懒,还未留个人介绍
         <%

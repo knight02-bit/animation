@@ -133,6 +133,10 @@ public class AnimServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 				
 			}else{
+				if(cover == null || cover.length() == 0){
+					cover = "static/picture/pic404.png";
+				}
+				
 				Anim anim = new Anim();
 				anim.setAid(aid);
 				anim.setAname(aname);
@@ -155,7 +159,71 @@ public class AnimServlet extends HttpServlet {
 				//重定向
 				response.sendRedirect("details.do?aid="+aid);
 			}
-
+		}
+		
+		else if(path.equals("/animAdd")){
+			int state = Integer.parseInt(request.getParameter("state"));
+			int year = Integer.parseInt(request.getParameter("year"));
+			String aname = request.getParameter("aname");
+			String cover = request.getParameter("cover");
+			String link = request.getParameter("link");
+			String content = request.getParameter("content");
+			
+			String error_msg = "";
+			
+			if(aname == null || aname.length()==0){
+				error_msg = "番名不可为空";
+			}else{
+				//判断url格式是否合法
+				String regex = "[a-zA-z]+://[^\\s]*"; // (注：\为转义字符）
+				boolean flag = link.matches(regex);
+				
+				//若填就得合规
+				if(link.length() != 0 && !flag) {
+					error_msg = "播放链接格式错误";
+				}
+			}
+			
+			if(error_msg != ""){
+				session.setAttribute("error_msg", error_msg);
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("animAdd.jsp");
+				dispatcher.forward(request, response);
+				
+			}else{
+				if(cover == null || cover.length() == 0){
+					cover = "static/picture/pic404.png";
+				}
+				
+				Anim anim = new Anim();
+				anim.setAname(aname);
+				anim.setState(state);
+				anim.setYear(year);
+				anim.setCover(cover);
+				anim.setLink(link);
+				anim.setContent(content);
+				
+				try {
+					service.add(anim);
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				//重定向
+				response.sendRedirect("list.do");
+			}
+		}
+		
+		else if(path.equals("/animDel")){
+			int aid = Integer.parseInt(request.getParameter("aid"));
+			try {
+				service.deleteByAid(aid);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			response.sendRedirect("list.do");
 		}
 	}
 
